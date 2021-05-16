@@ -24,6 +24,7 @@ export function handleHodlCreated(event: HodlCreated): void {
   entity.tokenBalance = BigInt.fromI32(0)
   entity.totalFee = BigInt.fromI32(0)
   entity.totalReward = BigInt.fromI32(0)
+  entity.totalShares = BigInt.fromI32(0)
 
 
   let contract = HTokenContract.bind(event.params.contractAddress)

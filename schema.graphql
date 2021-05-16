@@ -1,7 +1,6 @@
 
 type Account @entity {
   id: ID!
-  "Balances"
   hodlings: [AccountHodling!]! @derivedFrom(field: "account")
 
 }
@@ -34,7 +33,7 @@ type HToken @entity {
   createdTx: Bytes!
 
   tokenBalance: BigInt!
-  totalSupply: BigInt!
+  totalShares: BigInt!
   totalFee: BigInt!
   totalReward: BigInt
 }
