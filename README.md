@@ -1,9 +1,4 @@
-# Gamma (Opyn v2) Subgraph
-
-Official subgraph(s) for opyn v2.
-
-- [Gamma Mainnet](https://thegraph.com/explorer/subgraph/opynfinance/gamma-mainnet)
-- [Gamma Kovan](https://thegraph.com/explorer/subgraph/opynfinance/gamma-kovan)
+# Subgraph
 
 ## Install
 
@@ -48,9 +43,6 @@ npm run deploy:kovan
 
 ### Deploy on other networks
 
-To deploy this subgraph on a different network, 
-you will first need to deploy the [gamma protocol contracts](https://github.com/opynfinance/GammaProtocol) on the desired network, and udpate the contract addresses in `config/{network}.json`
-
 Then run
 ```shell
 
@@ -60,7 +52,3 @@ mustache config/<network>.json subgraph.template.yaml > subgraph.yaml
 # deploy
 graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ <subgraph-name>
 ```
-
-## Deploy to custom subgraph endpoint
-
-Change `antoncoding/gamma-subgraph-new` in `package.json` to your subgraph id.
