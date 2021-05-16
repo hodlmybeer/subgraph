@@ -1,0 +1,56 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: HodlERC20Factory
+    network: {{network}}
+    source:
+      address: "{{factory}}"
+      abi: HodlERC20Factory
+      startBlock: {{factory-start-block}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - HodlCreated
+      abis:
+        - name: HodlERC20Factory
+          file: ./abis/HodlERC20Factory.json
+      eventHandlers:
+        - event: HodlCreated(address,indexed address,indexed uint256,uint256,indexed uint256,uint256,uint256,address,address)
+          handler: handleHodlCreated
+      file: ./src/hodlFactory.ts
+      
+
+templates:
+  - name: HodlERC20
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      abi: HodlERC20
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Deposit
+        - Exit
+        - Redeem
+        - Transfer
+        - Withdraw
+      abis:
+        - name: HodlERC20
+          file: ./abis/HodlERC20.json
+      eventHandlers:
+        - event: Deposit(address,uint256,uint256)
+          handler: handleDeposit
+        - event: Exit(address,uint256,uint256,uint256)
+          handler: handleExit
+        - event: Redeem(address,uint256,uint256)
+          handler: handleRedeem
+        - event: Withdraw(address,uint256)
+          handler: handleWithdraw
+      file: ./src/hodlErc20.ts
