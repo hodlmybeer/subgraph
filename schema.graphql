@@ -2,7 +2,7 @@
 type Account @entity {
   id: ID!
   "Balances"
-  balances: [AccountHodling!]! @derivedFrom(field: "account")
+  hodlings: [AccountHodling!]! @derivedFrom(field: "account")
 
 }
 
@@ -22,27 +22,19 @@ type HToken @entity {
   symbol: String!
   decimals: Int!
   
-  token: ERC20! # address
+  token: Bytes! # address
   creator: Bytes! # address
   
   penalty: Int!
   fee: Int!
   
-  expiryTimestamp: BigInt!
-  isPut: Boolean!
-
+  expiry: BigInt!
+  
   createdAt: BigInt!
   createdTx: Bytes!
 
+  tokenBalance: BigInt!
   totalSupply: BigInt!
-  totalToken: BigInt!
   totalFee: BigInt!
   totalReward: BigInt
-}
-
-type ERC20 @entity {
-  id: ID!
-  symbol: String!
-  name: String!
-  decimals: Int!
 }

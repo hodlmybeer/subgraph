@@ -1,47 +1,37 @@
 import { BigInt } from "@graphprotocol/graph-ts"
-import { Contract, HodlCreated } from "../generated/Contract/Contract"
-import { ExampleEntity } from "../generated/schema"
+import { HodlERC20 as HTokenSource } from "../generated/templates"
+import { HodlERC20 as HTokenContract } from "../generated/templates/HodlERC20/HodlERC20"
+import { HodlCreated } from "../generated/HodlERC20Factory/HodlERC20Factory"
+import { HToken } from "../generated/schema"
 
 export function handleHodlCreated(event: HodlCreated): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from.toHex())
+  
+  // Start indeing the newly created HToken contract
+  HTokenSource.create(event.params.contractAddress)
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (entity == null) {
-    entity = new ExampleEntity(event.transaction.from.toHex())
+  // bind to the address that emit the event
+  let entity = new HToken(event.params.contractAddress.toHex())
 
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
-  }
-
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
-
-  // Entity fields can be set based on event parameters
-  entity.contractAddress = event.params.contractAddress
+  entity.penalty = event.params.penalty.toI32()
   entity.token = event.params.token
+  entity.fee = event.params.feePortion.toI32()
+  entity.expiry = event.params.expiry
+
+  entity.creator = event.params.creator
+  entity.createdAt = event.block.timestamp
+  entity.createdTx = event.transaction.hash
+
+  entity.tokenBalance = BigInt.fromI32(0)
+  entity.totalFee = BigInt.fromI32(0)
+  entity.totalReward = BigInt.fromI32(0)
+
+
+  let contract = HTokenContract.bind(event.params.contractAddress)
+  // Access state variables and functions by calling them
+  entity.symbol = contract.symbol()
+  entity.name = contract.name()
+  entity.decimals = contract.decimals()
 
   // Entities can be written to the store with `.save()`
   entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.createHodlERC20(...)
-  // - contract.getCreatedHToken(...)
-  // - contract.getTargetHTokenAddress(...)
 }

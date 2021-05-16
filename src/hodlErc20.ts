@@ -1,14 +1,11 @@
 import { BigInt } from "@graphprotocol/graph-ts"
 import {
-  Contract,
-  Approval,
   Deposit,
   Exit,
   Redeem,
-  Transfer,
   Withdraw
-} from "../generated/Contract/Contract"
-import { ExampleEntity } from "../generated/schema"
+} from "../generated/templates/HodlERC20/HodlERC20"
+import {  } from "../generated/schema"
 
 export function handleDeposit(event: Deposit): void {}
 
