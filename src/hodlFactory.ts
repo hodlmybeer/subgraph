@@ -15,11 +15,14 @@ export function handleHodlCreated(event: HodlCreated): void {
   entity.penalty = event.params.penalty.toI32()
   entity.token = event.params.token
   entity.fee = event.params.feePortion.toI32()
-  entity.expiry = event.params.expiry
+  entity.expiry = event.params.expiry.toI32()
 
   entity.creator = event.params.creator
-  entity.createdAt = event.block.timestamp
+  entity.lockWindow = event.params.lockWindow.toI32()
+  entity.createdAt = event.block.timestamp.toI32()
   entity.createdTx = event.transaction.hash
+
+  entity.n = event.params.n.toI32()
 
   entity.tokenBalance = BigInt.fromI32(0)
   entity.totalFee = BigInt.fromI32(0)

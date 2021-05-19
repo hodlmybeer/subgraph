@@ -22,6 +22,15 @@
   {
     "anonymous": false,
     "inputs": [
+      { "indexed": false, "internalType": "address", "name": "donator", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "Donate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       { "indexed": false, "internalType": "address", "name": "quitter", "type": "address" },
       { "indexed": false, "internalType": "uint256", "name": "amountOut", "type": "uint256" },
       { "indexed": false, "internalType": "uint256", "name": "reward", "type": "uint256" },

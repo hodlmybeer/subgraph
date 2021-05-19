@@ -3,7 +3,8 @@ import {
   Deposit,
   Exit,
   Redeem,
-  Withdraw
+  Withdraw,
+  Donate
 } from "../generated/templates/HodlERC20/HodlERC20"
 import { HToken } from "../generated/schema"
 import { getOrCreateAccountHodling } from './utils'
@@ -17,6 +18,9 @@ export function handleDeposit(event: Deposit): void {
   //
   let hToken = HToken.load(event.address.toHex())
   hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
+
+  hToken.totalShares = hToken.totalShares.plus(event.params.shares)
+  hToken.save()
 }
 
 export function handleExit(event: Exit): void {
@@ -64,4 +68,10 @@ export function handleWithdraw(event: Withdraw): void {
   hToken.tokenBalance = hToken.tokenBalance.minus(amount)
   hToken.save()
 
+}
+
+export function handleDonate(event: Donate): void {
+  let hToken = HToken.load(event.address.toHex())
+  hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
+  hToken.save()
 }

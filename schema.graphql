@@ -27,13 +27,15 @@ type HToken @entity {
   penalty: Int!
   fee: Int!
   
-  expiry: BigInt!
-  
-  createdAt: BigInt!
+  expiry: Int!
+  lockWindow: Int!
+  createdAt: Int!
   createdTx: Bytes!
+
+  n: Int!
 
   tokenBalance: BigInt!
   totalShares: BigInt!
   totalFee: BigInt!
-  totalReward: BigInt
+  totalReward: BigInt!
 }
