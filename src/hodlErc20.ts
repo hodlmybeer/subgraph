@@ -63,6 +63,7 @@ export function handleWithdraw(event: Withdraw): void {
   let accountHodling = getOrCreateAccountHodling(event.params.recipient, event.address.toHex())
   let amount = event.params.amountOut
   accountHodling.balance = accountHodling.balance.minus(amount)
+  accountHodling.save()
 
   let hToken = HToken.load(event.address.toHex())
   hToken.tokenBalance = hToken.tokenBalance.minus(amount)
