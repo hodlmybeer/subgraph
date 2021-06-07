@@ -22,6 +22,8 @@ type HToken @entity {
   decimals: Int!
   
   token: Bytes! # address
+  bonusToken: Bytes! #address
+
   creator: Bytes! # address
   
   penalty: Int!
@@ -35,6 +37,7 @@ type HToken @entity {
   n: Int!
 
   tokenBalance: BigInt!
+  bonusTokenBalance: BigInt!
   totalShares: BigInt!
   totalFee: BigInt!
   totalReward: BigInt!

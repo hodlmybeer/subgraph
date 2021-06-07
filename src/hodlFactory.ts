@@ -14,6 +14,7 @@ export function handleHodlCreated(event: HodlCreated): void {
 
   entity.penalty = event.params.penalty.toI32()
   entity.token = event.params.token
+  entity.bonusToken = event.params.bonusToken
   entity.fee = event.params.feePortion.toI32()
   entity.expiry = event.params.expiry.toI32()
 
@@ -25,6 +26,7 @@ export function handleHodlCreated(event: HodlCreated): void {
   entity.n = event.params.n.toI32()
 
   entity.tokenBalance = BigInt.fromI32(0)
+  entity.bonusTokenBalance = BigInt.fromI32(0)
   entity.totalFee = BigInt.fromI32(0)
   entity.totalReward = BigInt.fromI32(0)
   entity.totalShares = BigInt.fromI32(0)

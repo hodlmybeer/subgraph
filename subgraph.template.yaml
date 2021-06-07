@@ -21,7 +21,7 @@ dataSources:
         - name: HodlERC20
           file: ./abis/HodlERC20.json
       eventHandlers:
-        - event: HodlCreated(address,indexed address,indexed uint256,uint256,indexed uint256,uint256,uint256,address,address)
+        - event: HodlCreated(address,indexed address,indexed uint256,uint256,indexed uint256,uint256,uint256,address,address,address)
           handler: handleHodlCreated
       file: ./src/hodlFactory.ts
       
@@ -51,10 +51,10 @@ templates:
           handler: handleDeposit
         - event: Exit(address,uint256,uint256,uint256)
           handler: handleExit
-        - event: Redeem(address,uint256,uint256)
+        - event: Redeem(address,uint256,uint256,uint256)
           handler: handleRedeem
         - event: Withdraw(address,uint256)
           handler: handleWithdraw
-        - event: Donate(address,uint256)
+        - event: Donate(address,uint256,address)
           handler: handleDonate
       file: ./src/hodlErc20.ts

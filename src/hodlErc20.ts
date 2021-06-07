@@ -52,8 +52,11 @@ export function handleRedeem(event: Redeem): void {
 
   let hToken = HToken.load(event.address.toHex())
   let payout = event.params.reward
+  let bonusPayout = event.params.bonusReward
   
   hToken.tokenBalance = hToken.tokenBalance.minus(payout)
+  hToken.bonusTokenBalance = hToken.bonusTokenBalance.minus(bonusPayout)
+
   hToken.totalShares = hToken.totalShares.minus(shareBurned)
   hToken.save()
 }
@@ -73,6 +76,11 @@ export function handleWithdraw(event: Withdraw): void {
 
 export function handleDonate(event: Donate): void {
   let hToken = HToken.load(event.address.toHex())
-  hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
+  if (event.params.token === hToken.token) {
+    hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
+  } else {
+    hToken.bonusTokenBalance = hToken.bonusTokenBalance.plus(event.params.amount) 
+  }
+  
   hToken.save()
 }
