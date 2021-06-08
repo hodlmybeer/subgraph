@@ -9,6 +9,9 @@ npm i
 ## Building the graph
 
 ```shell
+# create subgraph manifest
+npm run prepare:ropsten
+
 # compile types
 npm run codegen
 
