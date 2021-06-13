@@ -1,5 +1,9 @@
 # Subgraph
 
+## Deployed Subgraphs
+1. [Hodl Ropsten](https://thegraph.com/explorer/subgraph/hodlmybeer/hodl-ropsten)
+2. [Hodl Kovan](https://thegraph.com/explorer/subgraph/hodlmybeer/hodl-kovan)
+
 ## Install
 
 ```shell
