@@ -7,7 +7,7 @@
 ## Install
 
 ```shell
-npm i
+yarn i
 ```
 
 ## Building the graph
@@ -36,10 +36,10 @@ graph auth https://api.thegraph.com/deploy/ <ACCESS_TOKEN>
 
 Make sure you include the last `/` at the end of the url!
 
-### Mainnet
+### Ropsten
 
 ```shell
-npm run deploy:mainnet
+npm run deploy:ropsten
 ```
 
 ### Kovan
