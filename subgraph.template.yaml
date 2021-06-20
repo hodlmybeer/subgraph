@@ -47,7 +47,7 @@ templates:
         - name: HodlERC20
           file: ./abis/HodlERC20.json
       eventHandlers:
-        - event: Deposit(address,uint256,uint256)
+        - event: Deposit(address,address,uint256,uint256)
           handler: handleDeposit
         - event: Exit(address,uint256,uint256,uint256)
           handler: handleExit
