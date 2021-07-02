@@ -74,8 +74,8 @@ export function handleWithdraw(event: Withdraw): void {
 
 export function handleDonate(event: Donate): void {
   let hToken = HToken.load(event.address.toHex())
-  if (event.params.token === hToken.token) {
-    hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
+  if (event.params.token.toHexString() == hToken.token.toHexString()) {
+    hToken.totalReward = hToken.totalReward.plus(event.params.amount) 
   } else {
     hToken.bonusTokenBalance = hToken.bonusTokenBalance.plus(event.params.amount) 
   }
