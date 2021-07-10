@@ -7,9 +7,11 @@
     "prepare:mainnet": "mustache config/mainnet.json subgraph.template.yaml > subgraph.yaml",
     "prepare:ropsten": "mustache config/ropsten.json subgraph.template.yaml > subgraph.yaml",
     "prepare:kovan": "mustache config/kovan.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:mumbai": "mustache config/mumbai.json subgraph.template.yaml > subgraph.yaml",
     "deploy:mainnet": "npm run prepare:mainnet && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hodlmybeer/hodl-mainnet",
     "deploy:ropsten": "npm run prepare:ropsten && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hodlmybeer/hodl-ropsten",
-    "deploy:kovan": "npm run prepare:kovan && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hodlmybeer/hodl-kovan"
+    "deploy:kovan": "npm run prepare:kovan && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hodlmybeer/hodl-kovan",
+    "deploy:mumbai": "npm run prepare:mumbai && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hodlmybeer/hodl-mumbai"
   },
   "devDependencies": {
     "@graphprotocol/graph-ts": "^0.18.0",
