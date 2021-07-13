@@ -1,9 +1,13 @@
 # Subgraph
 
+## Deployed Subgraphs
+1. [Hodl Ropsten](https://thegraph.com/explorer/subgraph/hodlmybeer/hodl-ropsten)
+2. [Hodl Kovan](https://thegraph.com/explorer/subgraph/hodlmybeer/hodl-kovan)
+
 ## Install
 
 ```shell
-npm i
+yarn i
 ```
 
 ## Building the graph
@@ -32,10 +36,10 @@ graph auth https://api.thegraph.com/deploy/ <ACCESS_TOKEN>
 
 Make sure you include the last `/` at the end of the url!
 
-### Mainnet
+### Ropsten
 
 ```shell
-npm run deploy:mainnet
+npm run deploy:ropsten
 ```
 
 ### Kovan

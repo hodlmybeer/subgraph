@@ -1,4 +1,3 @@
-import { BigInt } from "@graphprotocol/graph-ts"
 import {
   Deposit,
   Exit,
@@ -10,12 +9,11 @@ import { HToken } from "../generated/schema"
 import { getOrCreateAccountHodling } from './utils'
 
 export function handleDeposit(event: Deposit): void {
-  let accountHodling = getOrCreateAccountHodling(event.params.depositor, event.address.toHex())
+  let accountHodling = getOrCreateAccountHodling(event.params.recipient, event.address.toHex())
   accountHodling.balance = accountHodling.balance.plus(event.params.amount)
   accountHodling.shareBalance = accountHodling.shareBalance.plus(event.params.shares)
   accountHodling.save()
 
-  //
   let hToken = HToken.load(event.address.toHex())
   hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
 
@@ -76,8 +74,8 @@ export function handleWithdraw(event: Withdraw): void {
 
 export function handleDonate(event: Donate): void {
   let hToken = HToken.load(event.address.toHex())
-  if (event.params.token === hToken.token) {
-    hToken.tokenBalance = hToken.tokenBalance.plus(event.params.amount)
+  if (event.params.token.toHexString() == hToken.token.toHexString()) {
+    hToken.totalReward = hToken.totalReward.plus(event.params.amount) 
   } else {
     hToken.bonusTokenBalance = hToken.bonusTokenBalance.plus(event.params.amount) 
   }
