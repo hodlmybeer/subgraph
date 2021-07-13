@@ -5,7 +5,7 @@ import { HodlCreated } from "../generated/HodlERC20Factory/HodlERC20Factory";
 import { HToken } from "../generated/schem a";
 
 export function handleHodlCreated(event: HodlCreated): void {
-  // Start indeing the newly created HToken contract
+  // Start indexing the newly created HToken contract
   HTokenSource.create(event.params.contractAddress);
 
   // bind to the address that emit the event
