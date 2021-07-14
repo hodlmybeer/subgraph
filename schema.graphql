@@ -37,4 +37,6 @@ type HToken @entity {
   totalShares: BigInt!
   totalFee: BigInt!
   totalReward: BigInt!
+
+  hodlings: [AccountHodling!]! @derivedFrom(field: "token")
 }
