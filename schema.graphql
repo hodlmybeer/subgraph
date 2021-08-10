@@ -3,6 +3,11 @@ type Account @entity {
   hodlings: [AccountHodling!]! @derivedFrom(field: "account")
 }
 
+type Asset @entity {
+  id: ID!
+  whitelisted: Boolean!
+}
+
 type AccountHodling @entity {
   " Equals to ${account}-${otoken}"
   id: ID!
