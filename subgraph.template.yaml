@@ -15,6 +15,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - HodlCreated
+        - AssetWhitelisted
       abis:
         - name: HodlERC20Factory
           file: ./abis/HodlERC20Factory.json
@@ -23,6 +24,8 @@ dataSources:
       eventHandlers:
         - event: HodlCreated(address,indexed address,indexed uint256,uint256,indexed uint256,uint256,uint256,address,address,address)
           handler: handleHodlCreated
+        - event: AssetWhitelisted(address,bool)
+          handler: handleAssetWhitelisted
       file: ./src/hodlFactory.ts
       
 

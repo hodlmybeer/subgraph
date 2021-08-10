@@ -1,8 +1,8 @@
 import { BigInt } from "@graphprotocol/graph-ts";
 import { HodlERC20 as HTokenSource } from "../generated/templates";
 import { HodlERC20 as HTokenContract } from "../generated/templates/HodlERC20/HodlERC20";
-import { HodlCreated } from "../generated/HodlERC20Factory/HodlERC20Factory";
-import { HToken } from "../generated/schema";
+import { HodlCreated, AssetWhitelisted } from "../generated/HodlERC20Factory/HodlERC20Factory";
+import { HToken, Asset } from "../generated/schema";
 
 export function handleHodlCreated(event: HodlCreated): void {
   // Start indexing the newly created HToken contract
@@ -38,5 +38,15 @@ export function handleHodlCreated(event: HodlCreated): void {
   entity.decimals = contract.decimals();
 
   // Entities can be written to the store with `.save()`
+  entity.save();
+}
+
+export function handleAssetWhitelisted(event: AssetWhitelisted): void {
+  let entity = Asset.load(event.params.asset.toHex())
+  if (entity == null) {
+    entity = new Asset(event.params.asset.toHex());
+  }
+
+  entity.whitelisted = event.params.whitelisted
   entity.save();
 }
