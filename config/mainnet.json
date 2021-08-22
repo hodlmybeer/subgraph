@@ -1,5 +1,5 @@
 {
   "network": "mainnet",
-  "factory": "",
-  "factory-start-block": 11544447
+  "factory": "0x2DE82e7c77deFe0bB7578b5F4d4473c4a2dba40d",
+  "factory-start-block": 13066235
 }
